@@ -45,7 +45,7 @@ function Registration(){
 
                     <button className='w-[100%] h-[50px] bg-[#6060f5] rounded-lg flex items-center justify-center mt-[20px] text-[17px] font-semibold'> Create Account </button>
 
-                    <p className='flex gap-[10px]' >You Have any accound ?<span className='text-[#5555f6cf] text-[17px] font-semibold cursor-pointer' onClick={()=>navigate("/login")}>Login</span></p>
+                    <p className='flex gap-[10px]' >You Have any account ?<span className='text-[#5555f6cf] text-[17px] font-semibold cursor-pointer' onClick={()=>navigate("/login")}>Login</span></p>
                 </div>
             </form>
         </div>
