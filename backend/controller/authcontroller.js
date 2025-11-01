@@ -52,7 +52,7 @@ export const login = async (req,res)=>{
             sameSite : "Strict",
             maxAge : 7*24*60*1000
         })
-        return res.status(201).json({message : "Login Successful"})
+        return res.status(201).json(user)
 
     }catch(error){
         console.log("Login Error")
@@ -67,6 +67,29 @@ export const logout = async(req,res) => {
     } catch(error){
         console.log("logout error")
         return res.status(500).json({message:`Logout error ${error}`})
+    }
+}
+
+export const googleLogin = async(req,res) =>{
+    try{
+        let {name ,email} = req.body;
+        let user = await User.findOne({email})
+        if(!user){
+            user = await User.create({
+                name,email
+            })
+        }
+        let token = await gentoken(user._id)
+        res.cookie("token",token,{
+            httpOnly : true,
+            secure:false,
+            sameSite : "Strict",
+            maxAge : 7*24*60*1000
+        })
+        return res.status(200).json(user)
+    } catch(error){
+        console.log("Google Login error")
+        return res.status(500).json({message:`Google Login error ${error}`})
     }
 }
 
