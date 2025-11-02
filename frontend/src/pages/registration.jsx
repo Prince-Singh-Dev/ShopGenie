@@ -9,6 +9,7 @@ import { authDataContext } from '../context/authContext';
 import axios from "axios";
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../utils/Firebase';
+import { userdataContext } from '../context/UserContext';
 
 function Registration(){
     let [show,setShow] = useState(false)
@@ -16,6 +17,7 @@ function Registration(){
     let [name , setName] = useState("")
     let [email , setEmail] = useState("")
     let [password , setPassword] = useState("")
+    let {userdata , getCurrentUser} = useContext(userdataContext)
 
     let navigate = useNavigate()
 
@@ -25,7 +27,9 @@ function Registration(){
             const result = await axios.post(serverUrl + '/api/auth/registration' , {
                 name , email , password
             },{withCredentials : true})
-            console.log(result.data)
+                getCurrentUser()
+                navigate("/")
+                console.log(result.data)
         } catch(error){
             console.log(error)
         }

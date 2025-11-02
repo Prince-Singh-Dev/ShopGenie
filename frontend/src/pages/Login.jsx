@@ -9,6 +9,7 @@ import { authDataContext } from "../context/authContext";
 import axios from "axios";
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../utils/Firebase';
+import { userdataContext } from "../context/UserContext";
 
 function Login(){
     let [show,setShow] = useState(false)
@@ -16,7 +17,7 @@ function Login(){
     let [email , setEmail] = useState("")
     let [password , setPassword] = useState("")
     let {serverUrl} = useContext(authDataContext)
-
+    let {getCurrentUser} = useContext(userdataContext)
 
 
     let navigate = useNavigate()
@@ -28,6 +29,8 @@ function Login(){
                 email,password
             },{withCredentials : true})
             console.log(result.data)
+            getCurrentUser()
+            navigate("/")
         }catch(error){
             console.log(error)
         }
