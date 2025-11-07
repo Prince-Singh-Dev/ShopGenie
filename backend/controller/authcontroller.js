@@ -1,7 +1,7 @@
 import User from "../model/userModel.js";
 import validator from "validator";
 import bcrypt from "bcryptjs";
-import { gentoken } from "../config/token.js";
+import { gentoken, gentoken1 } from "../config/token.js";
 
 
 export const registration = async (req,res)=>{
@@ -25,7 +25,7 @@ export const registration = async (req,res)=>{
             httpOnly : true,
             secure:false,
             sameSite : "Strict",
-            maxAge : 7*24*60*1000
+            maxAge : 7*24*60*60*1000
         })
         return res.status(201).json(user)
     } catch(error){
@@ -50,7 +50,7 @@ export const login = async (req,res)=>{
             httpOnly : true,
             secure:false,
             sameSite : "Strict",
-            maxAge : 7*24*60*1000
+            maxAge : 7*24*60*60*1000
         })
         return res.status(201).json(user)
 
@@ -84,12 +84,32 @@ export const googleLogin = async(req,res) =>{
             httpOnly : true,
             secure:false,
             sameSite : "Strict",
-            maxAge : 7*24*60*1000
+            maxAge : 7*24*60*60*1000
         })
         return res.status(200).json(user)
     } catch(error){
         console.log("Google Login error")
         return res.status(500).json({message:`Google Login error ${error}`})
+    }
+}
+
+export const adminLogin = async(req,res) => {
+    try{
+        let {email,password} = req.body
+        if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
+            let token = await gentoken1(email)
+            res.cookie("token",token,{
+                httpOnly : true,
+                secure:false,
+                sameSite : "Strict",
+                maxAge : 1*24*60*60*1000
+            })
+            return res.status(200).json(token)
+        }
+        return res.status(400).json({message : "Invalid credentials"})
+    }catch(error){
+        console.log("Admin Login error")
+        return res.status(500).json({message:`Admin Login error ${error}`})
     }
 }
 
