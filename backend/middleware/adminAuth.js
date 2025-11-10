@@ -15,7 +15,7 @@ const adminAuth = async (req,res,next) => {
 
         }
 
-        res.adminEmail = process.env.ADMIN_EMAIL
+        req.adminEmail = process.env.ADMIN_EMAIL
 
         next()
 
