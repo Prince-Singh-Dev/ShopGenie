@@ -4,6 +4,8 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import axios from 'axios'
 import { authDataContext } from '../context/authContext';
+import { adminDataContext } from '../context/AdminContext';
+import { useNavigate } from 'react-router-dom';
 
 function Login(){
 
@@ -14,11 +16,17 @@ function Login(){
 
     let {serverUrl} = useContext(authDataContext)
 
+    let {adminData ,getAdmin} = useContext(adminDataContext)
+
+    let navigate = useNavigate()
+
     const AdminLogin = async(e) => {
         e.preventDefault()
         try{
             const result = await axios.post(serverUrl + '/api/auth/adminlogin' , {email , password} , {withCredentials : true})
             console.log(result.data)
+            getAdmin()
+            navigate("/")
         } catch (error){
             console.log(error)
         }
