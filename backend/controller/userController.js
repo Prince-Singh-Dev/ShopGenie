@@ -26,6 +26,6 @@ export const getAdmin = async (req,res) => {
         })
     } catch (error){
         console.log("Error")
-        return res.status(500).json({message:`Get Admin error ${error}`})
+        return res.status(500).json({message:`Get Admin Error ${error}`})
     }
 }
