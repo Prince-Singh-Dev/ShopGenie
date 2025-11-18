@@ -3,6 +3,9 @@ import Nav from '../component/Nav'
 import Sidebar from '../component/Sidebar'
 import upload from '../assets/uploadimage.png'
 import { useState } from 'react'
+import { useContext } from 'react'
+import { authDataContext } from '../context/authContext'
+import axios from 'axios'
 
 function Add() {
   let [image1,setImage1] = useState(false)
@@ -16,9 +19,44 @@ function Add() {
   const [subCategory , setsubCategory] = useState("Top Wear")
   const [bestseller , setBestSeller] = useState(false)
   const [sizes,setSizes] = useState([]) 
+  let {serverUrl} = useContext(authDataContext)
   
   const handleAddProduct = async(e) => {
+    e.preventDefault()
+    try{
+      let formData = new FormData()
+      formData.append("name",name)
+      formData.append("description",description)
+      formData.append("price",price)
+      formData.append("category",category)
+      formData.append("subCategory",subCategory)
+      formData.append("bestseller",bestseller)
+      formData.append("sizes",JSON.stringify(sizes))
+      formData.append("image1",image1)
+      formData.append("image2",image2)
+      formData.append("image3",image3)
+      formData.append("image4",image4)
 
+      let result = await axios.post(serverUrl + "/api/product/addproduct" , formData , {withCredentials : true})
+
+      console.log(result.data)
+      
+      if(result.data){
+        setName("")
+        setDescription("")
+        setImage1(false)
+        setImage2(false)
+        setImage3(false)
+        setImage4(false)
+        setPrice("")
+        setBestSeller(false)
+        setCategory("Men")
+        setsubCategory("Top Wear")
+      }
+
+    }catch(error){
+      console.log(error)
+    }
   }
 
   return (
@@ -26,8 +64,8 @@ function Add() {
       <Nav/>
       <Sidebar/>
 
-      <div className='w-[82%] h-[100%] flex items-center justify-start overflow-x-hidden absolute right-0'>
-        <form action="" className='w-[100%] md:w-[90%] h-[100%] mt-[70px] flex flex-col gap-[30px] py-60px] px-[30px] md:px-[60px]'>
+      <div className='w-[82%] h-[100%] flex items-center justify-start overflow-x-hidden absolute right-0 bottom-[5%]'>
+        <form action="" onSubmit={handleAddProduct} className='w-[100%] md:w-[90%] h-[100%] mt-[70px] flex flex-col gap-[30px] py-60px] px-[30px] md:px-[60px]'>
           <div className='w-[300px] h-[50px] mt-[70px] text-[25px] md:text-[40px] text-white'>Add Product</div>
 
           <div className='w-[80%] h-[130px] flex items-start justify-center flex-col mt-[20px] gap-[10px]'>
@@ -110,7 +148,14 @@ function Add() {
             </div>
           </div>
 
-          
+          <div className='w-[80%] flex items-center justify-start gap-[10px] mt-[20px]'>
+            <input type="checkbox" id="checkbox" className='w-[25px] h-[25px] cursor-pointer' onChange={()=>setBestSeller(prev => !prev)} />
+            <label htmlFor="checkbox" className='text-[18px] md:text-[22px] font-semibold'>
+              Add to BestSeller
+            </label>
+          </div>
+
+          <button className='w-[140px] px-[20px] py-[20px] rounded-xl bg-[#65d8f7] flex items-center justify-center gap-[10px] text-black active:bg-slate-700 active:text-white active:border-[2px] border-white'>Add Product</button>
 
         </form>
       </div>
