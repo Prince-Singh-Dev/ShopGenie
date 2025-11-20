@@ -40,7 +40,7 @@ function App(){
         <Route path='/collection' 
         element={userData ? <Collections/> : <Navigate to="/login" state={{from : location.pathname}}/>}/>
 
-        <Route path='/product' 
+        <Route path="/product"
         element={userData ? <Product/> : <Navigate to="/login" state={{from : location.pathname}}/>}/>
 
         <Route path='/contact' 
