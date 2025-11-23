@@ -65,7 +65,7 @@ function Nav
         </div>
 
         {showSearch && <div className='w-[100%] h-[80px] bg-[#d8f6f9dd] absolute top-[100%] left-0 right-0 flex items-center justify-center'>
-            <input type="text" className='w-[50%] h-[60%] bg-[#233533] rounded-[30px] px-[50px] placeholder:text-white text-[white] text-[18px]' placeholder='Search Here' />
+            <input type="text" className='lg:w-[50%] w-[80%] h-[60%] bg-[#233533] rounded-[30px] px-[50px] placeholder:text-white text-[white] text-[18px]' placeholder='Search Here' />
         </div>}
 
         { showProfile && <div className='absolute w-[220px] h-[150px] bg-[#000000d7] top-[110%] right-[4%] border-[1px] border-[#aaa9a9] rounded-[10px] z-10'>
@@ -84,13 +84,15 @@ function Nav
 
         <div className='w-[100vw] h-[90px] flex items-center justify-between px-[20px] text-[12px] fixed bottom-0 left-0 bg-[#191818] md:hidden'>
 
-                <button className='text-[white] flex items-center justify-center flex-col gap-[2px]' onClick={()=>navigate("/")}> <IoMdHome className='w-[23px] h-[23px] text-[white] md:hidden'/> Home</button>
+                <button className='text-[white] flex items-center justify-center flex-col gap-[2px]' onClick={()=>navigate("/")}> <IoMdHome className='w-[33px] h-[33px] text-[white] md:hidden'/> Home</button>
 
-                <button className='text-[white] flex items-center justify-center flex-col gap-[2px]' onClick={()=>navigate("/collection")}> <BsCollectionFill className='w-[20px] h-[20px] text-[white] md:hidden'/> Collections</button>
+                <button className='text-[white] flex items-center justify-center flex-col gap-[2px]' onClick={()=>navigate("/collection")}> <BsCollectionFill className='w-[28px] h-[28px] text-[white] md:hidden'/> Collections</button>
 
-                <button className='text-[white] flex items-center justify-center flex-col gap-[2px]'> <FaShoppingCart className='w-[20px] h-[20px] text-[white] md:hidden'/> Cart</button>
+                <button className='text-[white] flex items-center justify-center flex-col gap-[2px]' onClick={()=>navigate("/contact")}> <MdSupportAgent className='w-[30px] h-[30px] text-[white] md:hidden'/> Contact</button>
 
-                <button className='text-[white] flex items-center justify-center flex-col gap-[2px]' onClick={()=>navigate("/contact")}> <MdSupportAgent className='w-[20px] h-[20px] text-[white] md:hidden'/> Contact</button>
+                <button className='text-[white] flex items-center justify-center flex-col gap-[2px]'> <FaShoppingCart className='w-[28px] h-[28px] text-[white] md:hidden'/>Cart</button>
+
+                <p className='absolute w-[20px] h-[20px] flex items-center justify-center bg-white px-[5px] py-[2px] text-black font-semibold rounded-full text-[9px] top-[8px] right-[18px]'>10</p>
         </div>
 
     </div>
