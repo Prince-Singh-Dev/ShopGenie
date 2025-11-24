@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Nav from "../component/Nav";
 import Background from "../component/Background";
 import Hero from "../component/Hero";
+import Product from "./Product";
 
 
 function Home(){
@@ -32,6 +33,9 @@ function Home(){
                 <Hero heroCount={heroCount} setHeroCount={setHeroCount} heroData={heroData[heroCount]}/>
 
             </div>
+
+            <Product/>
+
         </div>
     )
 }
