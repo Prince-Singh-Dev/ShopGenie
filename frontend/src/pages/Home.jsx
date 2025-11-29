@@ -4,6 +4,7 @@ import Background from "../component/Background";
 import Hero from "../component/Hero";
 import Product from "./Product";
 import OurPolicy from "../component/OurPolicy";
+import NewLetterBox from "../component/NewLetterBox";
 
 
 function Home(){
@@ -37,6 +38,7 @@ function Home(){
 
             <Product/>
             <OurPolicy/>
+            <NewLetterBox/>
 
         </div>
     )
