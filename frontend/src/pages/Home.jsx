@@ -3,6 +3,7 @@ import Nav from "../component/Nav";
 import Background from "../component/Background";
 import Hero from "../component/Hero";
 import Product from "./Product";
+import OurPolicy from "../component/OurPolicy";
 
 
 function Home(){
@@ -35,6 +36,7 @@ function Home(){
             </div>
 
             <Product/>
+            <OurPolicy/>
 
         </div>
     )
