@@ -47,6 +47,28 @@ function Collections() {
     setFilterProduct(productCopy)
   }
 
+  const sortProduct = (e) =>{
+    let fbCopy = filterProduct.slice()
+
+    switch(sortType){
+      case 'low-high':
+        setFilterProduct(fbCopy.sort((a,b)=>(a.price - b.price)))
+      break;
+
+      case 'high-low':
+        setFilterProduct(fbCopy.sort((a,b)=>(b.price - a.price)))
+      break;
+
+      default :
+        applyFilter()
+      break;
+    }
+  }
+
+  useEffect(()=>{
+    sortProduct()
+  },[sortType])
+
   useEffect(()=>{
     setFilterProduct(products)
   },[products])
@@ -89,7 +111,7 @@ function Collections() {
 
           <div className='md:w-[80vw] w-[100vw] p-[20px] flex justify-between flex-col lg:flex-row lg:px-[50px]'>
             <Title text1={"ALL"} text2={"COLLECTIONS"}/>
-            <select name="" id="" className='bg-slate-600 w-[60%] md:w-[200px] h-[50px] px-[10px] text-[white] rounded-lg hover:border-[#46d1f7] border-[2px]'>
+            <select name="" id="" className='bg-slate-600 w-[60%] md:w-[200px] h-[50px] px-[10px] text-[white] rounded-lg hover:border-[#46d1f7] border-[2px]' onChange={(e) => setSortType(e.target.value)}>
               <option value="relavent" className='w-[100%] h-[100%]'>Sort By : Relavent</option>
               <option value="low-high" className='w-[100%] h-[100%]'>Sort By : Low to High</option>
               <option value="high-low" className='w-[100%] h-[100%]'>Sort By : High to Low</option>
