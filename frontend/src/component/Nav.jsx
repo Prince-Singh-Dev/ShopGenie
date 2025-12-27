@@ -19,7 +19,7 @@ function Nav
 () {
     let {getCurrentUser , userData} = useContext(userdataContext)
     let {serverUrl} = useContext(authDataContext)
-    let {showSearch , setShowSearch , search , setSearch} = useContext(shopDataContext)
+    let {showSearch , setShowSearch , search , setSearch , getCartCount} = useContext(shopDataContext)
     let [showProfile , setShowProfile] = useState(false)
     let navigate = useNavigate()
 
@@ -61,7 +61,7 @@ function Nav
             { userData && <div className='w-[30px] h-[30px] bg-[#080808] text-[white] rounded-full flex items-center justify-center cursor-pointer' onClick={()=>setShowProfile(prev=>!prev)}>{userData?.name.slice(0,1)}</div>}
 
             <FaShoppingCart className='w-[29px] h-[29px] text-[#000000] cursor-pointer hidden md:block' />
-            <p className=' absolute w-[18px] h-[18px] items-center md:flex justify-center bg-black px-[5px] py-[2px] text-white rounded-full text-[9px] top-[10px] right-[23px] hidden md:block'>10</p>
+            <p className=' absolute w-[18px] h-[18px] items-center md:flex justify-center bg-black px-[5px] py-[2px] text-white rounded-full text-[9px] top-[10px] right-[23px] hidden md:block'>{getCartCount()}</p>
 
         </div>
 
@@ -93,7 +93,7 @@ function Nav
 
                 <button className='text-[white] flex items-center justify-center flex-col gap-[2px]'> <FaShoppingCart className='w-[28px] h-[28px] text-[white] md:hidden'/>Cart</button>
 
-                <p className='absolute w-[20px] h-[20px] flex items-center justify-center bg-white px-[5px] py-[2px] text-black font-semibold rounded-full text-[9px] top-[8px] right-[18px]'>10</p>
+                <p className='absolute w-[20px] h-[20px] flex items-center justify-center bg-white px-[5px] py-[2px] text-black font-semibold rounded-full text-[9px] top-[8px] right-[18px]'>{getCartCount()}</p>
         </div>
 
     </div>

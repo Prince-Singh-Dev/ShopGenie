@@ -6,7 +6,7 @@ import RelatedProduct from '../component/RelatedProduct';
 
 function ProductDetail() {
   let { productId } = useParams()
-  let { products, currency } = useContext(shopDataContext)
+  let { products, currency, addtoCart } = useContext(shopDataContext)
   let [productData, setProductData] = useState(false)
 
   const [image, setImage] = useState('')
@@ -114,7 +114,7 @@ function ProductDetail() {
               }
             </div>
 
-            <button className='text-[16px] bg-[#495b61c9] py-[16px] rounded-2xl mt-[10px] border border-[#80808049] text-white shadow-md shadow-black transition-all hover:bg-[#5f737a] active:scale-[0.97]'>
+            <button className='text-[16px] bg-[#495b61c9] py-[16px] rounded-2xl mt-[10px] border border-[#80808049] text-white shadow-md shadow-black transition-all hover:bg-[#5f737a] active:scale-[0.97]' onClick={()=>addtoCart(productData._id , size)}>
               Add To Cart
             </button>
           </div>
