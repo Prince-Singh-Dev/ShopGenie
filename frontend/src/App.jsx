@@ -12,6 +12,7 @@ import Collections from './pages/Collections'
 import Product from './pages/Product'
 import Contact from './pages/Contact'
 import ProductDetail from './pages/ProductDetail';
+import Cart from './pages/Cart';
 
 function App(){
 
@@ -49,6 +50,9 @@ function App(){
 
         <Route path='/productdetail/:productId' 
         element={userData ? <ProductDetail/> : <Navigate to="/login" state={{from : location.pathname}}/>}/>
+
+        <Route path='/cart' 
+        element={userData ? <Cart/> : <Navigate to="/login" state={{from : location.pathname}}/>}/>
 
       </Routes>
     </>

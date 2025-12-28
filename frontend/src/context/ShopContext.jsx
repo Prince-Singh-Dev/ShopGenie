@@ -71,7 +71,7 @@ function ShopContext({children}) {
         }
     }
 
-    const UpdateQuantity = async (itemId , size , quantity) => {
+    const updateQuantity = async (itemId , size , quantity) => {
         let cartData = structuredClone(cartItem);
         cartData[itemId][size] = quantity
         setCartItem(cartData)
@@ -127,7 +127,7 @@ function ShopContext({children}) {
     },[])
 
     let value = {
-        products , currency , delivery_fee , getProducts , search , setSearch , showSearch , setShowSearch , cartItem , addtoCart , getCartCount , setCartItem , UpdateQuantity , getCartAmount
+        products , currency , delivery_fee , getProducts , search , setSearch , showSearch , setShowSearch , cartItem , addtoCart , getCartCount , setCartItem , updateQuantity , getCartAmount
     }
 
   return (
