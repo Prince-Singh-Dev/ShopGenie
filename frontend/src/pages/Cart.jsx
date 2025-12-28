@@ -3,6 +3,7 @@ import Title from '../component/Title'
 import { shopDataContext } from '../context/ShopContext'
 import { useNavigate } from 'react-router-dom'
 import { RiDeleteBin5Line } from "react-icons/ri";
+import CartTotal from '../component/CartTotal';
 
 function Cart() {
     const {products , currency , cartItem , updateQuantity} = useContext(shopDataContext)
@@ -56,11 +57,27 @@ function Cart() {
                                 <RiDeleteBin5Line className='text-[#9ff9f9] w-[25px] h-[25px] absolute top-[50%] md:top-[40%] md:right-[5%] right-1' onClick={()=> updateQuantity(item._id,item.size,0)} />
 
                             </div>
-
                         </div>
                     )
                 })
             }
+        </div>
+
+        <div className='flex justify-start items-end my-20'>
+            <div className='w-full sm:w-[450px]'>
+                <CartTotal/>
+                <button className='text-[18px] hover:bg-slate-500 cursor-pointer bg-[#51808048] py-[10px] px-[50px] rounded-2xl text-white flex items-center justify-center gap-[20px] border-[1px] border-[#80808049] ml-[30px] mt-[20px]' 
+                
+                onClick={()=>{
+                    if (cartData.length > 0){
+                        navigate("/placeorder");
+                    } else {
+                        console.log("Your Cart is Empty !");
+                    }
+                }}>
+                    PROCEED TO CHECKOUT
+                </button>
+            </div>
         </div>
 
     </div>

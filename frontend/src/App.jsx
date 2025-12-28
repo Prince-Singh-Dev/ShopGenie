@@ -13,6 +13,7 @@ import Product from './pages/Product'
 import Contact from './pages/Contact'
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
+import PlaceOrder from './pages/PlaceOrder';
 
 function App(){
 
@@ -53,6 +54,9 @@ function App(){
 
         <Route path='/cart' 
         element={userData ? <Cart/> : <Navigate to="/login" state={{from : location.pathname}}/>}/>
+
+        <Route path='/placeorder' 
+        element={userData ? <PlaceOrder/> : <Navigate to="/login" state={{from : location.pathname}}/>}/>
 
       </Routes>
     </>
