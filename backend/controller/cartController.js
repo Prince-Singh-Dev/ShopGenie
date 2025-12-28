@@ -1,4 +1,4 @@
-import User from "../model/userModel";
+import User from "../model/userModel.js";
 
 export const addToCart = async (req,res) =>{
     try{

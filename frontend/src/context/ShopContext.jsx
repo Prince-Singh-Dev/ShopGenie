@@ -6,12 +6,14 @@ import { createContext } from 'react'
 import { authDataContext } from './authContext'
 import axios from 'axios'
 import { useEffect } from 'react'
+import { userdataContext } from './UserContext'
 
 export const shopDataContext = createContext()
 function ShopContext({children}) {
 
     let [products , setProducts] = useState([])
     let [search , setSearch] = useState('')
+    let {userData} = useContext(userdataContext)
     let [showSearch , setShowSearch] = useState(false)
     let {serverUrl} = useContext(authDataContext)
     let [cartItem , setCartItem] = useState({});
@@ -46,9 +48,41 @@ function ShopContext({children}) {
             cartData[itemId] = {};
             cartData[itemId][size] = 1;
         }
-        
         setCartItem(cartData);
-        console.log(cartData)
+
+        if(userData){
+            try{
+               let result =  await axios.post(serverUrl + '/api/cart/add',{itemId,size},{withCredentials : true})
+               console.log(result.data)
+            } catch(error){
+                console.log(error)
+            }
+        }
+    }
+
+    const getUserCart = async () => {
+        try{
+            const result = await axios.post(serverUrl + '/api/cart/get' , {} , {withCredentials : true})
+
+            setCartItem(result.data)
+        } catch (error){
+            console.log(error)
+            
+        }
+    }
+
+    const UpdateQuantity = async (itemId , size , quantity) => {
+        let cartData = structuredClone(cartItem);
+        cartData[itemId][size] = quantity
+        setCartItem(cartData)
+
+        if(userData){
+            try{
+                await axios.post(serverUrl + "/api/cart/update" , {itemId,size,quantity} , {withCredentials : true})
+            } catch(error){
+                console.log(error)
+            }
+        }
     }
 
     const getCartCount = () => {
@@ -60,19 +94,40 @@ function ShopContext({children}) {
                         totalCount += cartItem[items][item]
                     }
                 } catch (error){
-
+                    console.log(error)
                 }
             }
         }
         return totalCount
     }
 
+    const getCartAmount = async () => {
+    let totalAmount = 0;
+        for (const items in cartItem){
+            let itemInfo = products.find((product) => product._id === items);
+            for (const item in cartItem[items]){
+                try{
+                    if(cartItem[items][item]>0){
+                        totalAmount += itemInfo.price * cartItem[items][item];
+                    }
+                } catch (error){
+                    console.log(error)
+                }
+            }
+        }
+        return totalAmount
+    }
+
     useEffect(()=>{
         getProducts()
     },[])
 
+    useEffect(() => {
+        getUserCart()
+    },[])
+
     let value = {
-        products , currency , delivery_fee , getProducts , search , setSearch , showSearch , setShowSearch , cartItem , addtoCart , getCartCount , setCartItem
+        products , currency , delivery_fee , getProducts , search , setSearch , showSearch , setShowSearch , cartItem , addtoCart , getCartCount , setCartItem , UpdateQuantity , getCartAmount
     }
 
   return (
