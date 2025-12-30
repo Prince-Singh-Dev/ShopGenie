@@ -7,6 +7,7 @@ import { authDataContext } from '../context/authContext'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { SiEbox } from "react-icons/si";
+import {toast} from "react-toastify"
 
 function Orders() {
 
@@ -27,9 +28,11 @@ function Orders() {
       const result = await axios.post(serverUrl + '/api/order/status' , {orderId, status:e.target.value},{withCredentials:true})
       if(result.data){
         await fetchAllOrders()
+        toast.success("Status Updated")
       }
     } catch(error){
       console.log(error)
+      toast.error("Status Updation Failed")
     }
   }
 

@@ -6,6 +6,7 @@ import { shopDataContext } from '../context/ShopContext'
 import { authDataContext } from '../context/authContext'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import {toast} from "react-toastify"
 
 function PlaceOrder() {
 
@@ -60,10 +61,12 @@ function PlaceOrder() {
           console.log(result.data)
 
           if(result.data){
+            toast.success("Order Placed")
             setCartItem({})
             navigate("/order")
           } else{
             console.log(result.data.message)
+            toast.error("Error in Order Placing")
           }
           
           break;

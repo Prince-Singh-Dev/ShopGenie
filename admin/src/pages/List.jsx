@@ -6,6 +6,7 @@ import { useContext } from 'react'
 import { authDataContext } from '../context/authContext'
 import axios from 'axios'
 import { useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 function Lists() {
   let [list , setList] = useState([])
@@ -16,6 +17,7 @@ function Lists() {
       let result = await axios.get(serverUrl + "/api/product/list")
       setList(result.data)
       console.log(result.data)
+
     }catch(error){
       console.log(error)
     }
@@ -27,9 +29,11 @@ function Lists() {
 
       if(result.data){
         fetchList()
+        toast.success("Product Removed Successfully")
       }
       else{
         console.log("failed to remove product")
+        toast.error("Failed to remove product")
       }
     }catch(error){
       console.log(error)

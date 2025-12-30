@@ -6,6 +6,8 @@ import { useState } from 'react'
 import { useContext } from 'react'
 import { authDataContext } from '../context/authContext'
 import axios from 'axios'
+import { toast } from 'react-toastify'
+import Loading from '../component/Loading'
 
 function Add() {
   let [image1,setImage1] = useState(false)
@@ -19,9 +21,11 @@ function Add() {
   const [subCategory , setsubCategory] = useState("Top Wear")
   const [bestseller , setBestSeller] = useState(false)
   const [sizes,setSizes] = useState([]) 
+  const [loading , setLoading] = useState(false)
   let {serverUrl} = useContext(authDataContext)
   
   const handleAddProduct = async(e) => {
+    setLoading(true)
     e.preventDefault()
     try{
       let formData = new FormData()
@@ -40,6 +44,8 @@ function Add() {
       let result = await axios.post(serverUrl + "/api/product/addproduct" , formData , {withCredentials : true})
 
       console.log(result.data)
+      toast.success("Added Product Successfully")
+      setLoading(false)
       
       if(result.data){
         setName("")
@@ -56,6 +62,8 @@ function Add() {
 
     }catch(error){
       console.log(error)
+      setLoading(false)
+      toast.error("Add Product Failed")
     }
   }
 
@@ -155,7 +163,7 @@ function Add() {
             </label>
           </div>
 
-          <button className='w-[140px] px-[20px] py-[20px] rounded-xl bg-[#65d8f7] flex items-center justify-center gap-[10px] text-black active:bg-slate-700 active:text-white active:border-[2px] border-white'>Add Product</button>
+          <button className='w-[140px] px-[20px] py-[20px] rounded-xl bg-[#65d8f7] flex items-center justify-center gap-[10px] text-black active:bg-slate-700 active:text-white active:border-[2px] border-white'>{loading ? <Loading/> : "Add Product"}</button>
 
         </form>
       </div>

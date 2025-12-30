@@ -6,6 +6,7 @@ import axios from 'axios'
 import { authDataContext } from '../context/authContext';
 import { adminDataContext } from '../context/AdminContext';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function Login(){
 
@@ -15,20 +16,32 @@ function Login(){
     let [password , setPassword] = useState("")
 
     let {serverUrl} = useContext(authDataContext)
-
     let {adminData ,getAdmin} = useContext(adminDataContext)
 
     let navigate = useNavigate()
 
+    const [loading , setLoading] = useState(false)
+
     const AdminLogin = async(e) => {
-        e.preventDefault()
+        e.preventDefault()         
+        setLoading(true)            
+
         try{
-            const result = await axios.post(serverUrl + '/api/auth/adminlogin' , {email , password} , {withCredentials : true})
-            console.log(result.data)
+            const result = await axios.post(
+                serverUrl + '/api/auth/adminlogin',
+                {email , password},
+                {withCredentials : true}
+            )
+
+            toast.success("Admin logged in successfully")  
             getAdmin()
+            setLoading(false)                              
             navigate("/")
+
         } catch (error){
             console.log(error)
+            setLoading(false)                              
+            toast.error("Login failed. Invalid credentials")
         }
     }
 
@@ -49,14 +62,30 @@ function Login(){
             <form action="" onSubmit={AdminLogin} className='w-[90%] h-[90%] flex flex-col items-center justify-start gap-[20px]'>
 
                 <div className='w-[90%] h-[400px] flex flex-col items-center justify-center gap-[15px] relative'>
-                    <input type='text' className='w-[100%] h-[50px] border-[2px] border-[#96969636] backdrop:blur-sm rounded-lg bg-transparent placeholder-[#ffffffc7] px-[20px] font-semibold' placeholder='Email' required onChange={(e)=>setEmail(e.target.value)} value={email}/>
+                    <input
+                      type='text'
+                      className='w-[100%] h-[50px] border-[2px] border-[#96969636] backdrop:blur-sm rounded-lg bg-transparent placeholder-[#ffffffc7] px-[20px] font-semibold'
+                      placeholder='Email'
+                      required
+                      onChange={(e)=>setEmail(e.target.value)}
+                      value={email}
+                    />
 
-                    <input type={show?"text" : "password"} className='w-[100%] h-[50px] border-[2px] border-[#96969636] backdrop:blur-sm rounded-lg bg-transparent placeholder-[#ffffffc7] px-[20px] font-semibold' placeholder='Password' required onChange={(e)=>setPassword(e.target.value)} value={password} />
+                    <input
+                      type={show?"text" : "password"}
+                      className='w-[100%] h-[50px] border-[2px] border-[#96969636] backdrop:blur-sm rounded-lg bg-transparent placeholder-[#ffffffc7] px-[20px] font-semibold'
+                      placeholder='Password'
+                      required
+                      onChange={(e)=>setPassword(e.target.value)}
+                      value={password}
+                    />
                     
                     { !show && <FaEye className='w-[20px] h-[20px] cursor-pointer absolute right-[5%] bottom-[50%]'  onClick={()=>setShow(prev => !prev)} />}
                     {show && <FaEyeSlash className='w-[20px] h-[20px] cursor-pointer absolute right-[5%] bottom-[50%]' onClick={()=>setShow(prev => !prev)}/>}
 
-                    <button className='w-[100%] h-[50px] bg-[#6060f5] rounded-lg flex items-center justify-center mt-[20px] text-[17px] font-semibold'> Log In </button>
+                    <button className='w-[100%] h-[50px] bg-[#6060f5] rounded-lg flex items-center justify-center mt-[20px] text-[17px] font-semibold'>
+                        Log In
+                    </button>
 
                 </div>
             </form>

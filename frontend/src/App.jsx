@@ -15,6 +15,8 @@ import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import PlaceOrder from './pages/PlaceOrder';
 import Order from './pages/Order';
+import NotFound from './pages/NotFound';
+import { ToastContainer, toast } from 'react-toastify';
 
 function App(){
 
@@ -23,6 +25,7 @@ function App(){
 
   return (
     <>
+    <ToastContainer />
     { userData && <Nav/>}
       <Routes>
 
@@ -61,6 +64,8 @@ function App(){
 
         <Route path='/order' 
         element={userData ? <Order/> : <Navigate to="/login" state={{from : location.pathname}}/>}/>
+
+        <Route path='*' element={<NotFound/>}/>
 
       </Routes>
     </>

@@ -7,6 +7,7 @@ import { authDataContext } from './authContext'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { userdataContext } from './UserContext'
+import {toast} from 'react-toastify'
 
 export const shopDataContext = createContext()
 function ShopContext({children}) {
@@ -54,8 +55,10 @@ function ShopContext({children}) {
             try{
                let result =  await axios.post(serverUrl + '/api/cart/add',{itemId,size},{withCredentials : true})
                console.log(result.data)
+               toast.success("Added to Cart")
             } catch(error){
                 console.log(error)
+                toast.error("Failed to Add Product")
             }
         }
     }

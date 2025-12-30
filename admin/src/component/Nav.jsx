@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { authDataContext } from '../context/authContext'
 import { adminDataContext } from '../context/AdminContext'
+import {toast} from "react-toastify"
 
 function Nav() {
     let navigate = useNavigate()
@@ -16,10 +17,12 @@ function Nav() {
                 withCredentials:true
             })
             console.log(result.data)
+            toast.success("Logout Successfully")
             getAdmin()
             navigate("/login")
         }catch(error){
             console.log(error)
+            toast.error("Logout Failed")
         }
     }
   return (
