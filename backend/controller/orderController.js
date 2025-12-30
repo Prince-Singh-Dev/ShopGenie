@@ -1,6 +1,8 @@
 import User from "../model/userModel.js";
 import Order from "../model/orderModel.js";
 
+//for user
+
 export const placeOrder = async (req,res) => {
     try{
         const {items , amount , address} = req.body;
@@ -36,5 +38,27 @@ export const userOrders = async(req,res) => {
     } catch (error){
         console.log(error)
         return res.status(500).json({message : "userOrders error"})
+    }
+}
+
+// for admin
+
+export const allOrders = async (req,res) => {
+    try {
+        const orders = await Order.find({})
+        res.status(200).json(orders)
+    } catch(error){
+        console.log(error)
+        return res.status(500).json({message : "adminAllOrders error"})
+    }
+}
+
+export const updateStatus = async(req,res) => {
+    try{
+        const {orderId, status} = req.body
+        await Order.findByIdAndUpdate(orderId , {status})
+        return res.status(201).json({message : 'Status Updated'})
+    } catch(error){
+        return res.status(500).json({message : error.message})
     }
 }
