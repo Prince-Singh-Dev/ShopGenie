@@ -17,6 +17,7 @@ import PlaceOrder from './pages/PlaceOrder';
 import Order from './pages/Order';
 import NotFound from './pages/NotFound';
 import { ToastContainer, toast } from 'react-toastify';
+import Ai from './component/Ai';
 
 function App(){
 
@@ -68,6 +69,8 @@ function App(){
         <Route path='*' element={<NotFound/>}/>
 
       </Routes>
+
+      <Ai/>
     </>
   )
 }
