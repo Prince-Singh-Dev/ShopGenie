@@ -8,7 +8,7 @@ import { userdataContext } from '../context/UserContext';
 import { IoSearchCircleOutline } from "react-icons/io5";
 import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { authDataContext } from '../context/authContext';
+import { authDataContext } from '../context/AuthContext';
 import { IoMdHome } from "react-icons/io";
 import { BsCollectionFill } from "react-icons/bs";
 import { MdSupportAgent } from "react-icons/md";
