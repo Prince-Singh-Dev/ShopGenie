@@ -3,7 +3,7 @@ import logo from '../assets/logo.png'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import axios from 'axios'
-import { authDataContext } from '../context/authContext';
+import { authDataContext } from '../context/AuthContext';
 import { adminDataContext } from '../context/AdminContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
