@@ -1,61 +1,108 @@
-# ShopGenie
-ShopGenie is an AI-powered e-commerce platform that blends intelligence with personalization. It learns from user preferences, shopping habits, and market trends to deliver tailored product recommendations, AI-driven search, and real-time conversational support, creating a next-gen online shopping experience.
+# ShopGenie 🛍️ – AI-Powered E-commerce Platform
 
-# 🌟 Features
-🧠 AI-Powered Intelligence
+ShopGenie is a next-generation e-commerce platform with a customer interface, admin panel, and AI-powered voice commands. Users can navigate, search, and interact with the website hands-free, making online shopping faster and smarter.
 
-Smart Recommendations — Personalized product suggestions based on behavior, history, and intent.
+This platform is different from typical e-commerce sites because of:
+Real-time interaction between customer dashboard and admin panel
+AI voice command functionality for navigation & actions
+Fully responsive design with modern UI/UX
+MERN stack-based architecture with cloud deployment
 
-Visual Search — Upload an image, and the AI finds similar products instantly.
+# 🎥 Demo Video
 
-Smart Search Bar — Understands natural language like “show me red sneakers under ₹3000.”
+Watch ShopGenie in action:[Link][https://youtu.be/3SB1atOVclk?si=FDxcwwvqOO1DFaPb]
 
-AI Chat Assistant — Your personal shopping guide that answers queries, finds deals, and recommends combos.
+Note: For first-time users, please allow third-party cookies to enable full AI voice functionality.
 
-# 🛒 Core E-Commerce Functionality
+# 🛠️ Features
 
-Product listing, filtering, and sorting.
+# Customer Interface
 
-Secure user authentication (JWT-based).
+Login/Register with Firebase Authentication
+Home Page: Scrollable dynamic product feed
+Collections Page:
+Filter by Men, Women, Kids
+Subcategories: Topwear, Bottomwear, Winterwear
+Sort products: Relevance, Price High → Low, Price Low → High
+Product Selection & Purchase:
+Add items to cart
+Fill details: Name, Address, Payment
+Place orders and track in My Orders
+About & Contact Us pages for brand info and support
 
-Shopping cart and wishlist system.
+# Admin Panel
 
-Order tracking and purchase history.
+Add, remove, update products (images stored on Cloudinary)
+Update order status in real-time
+View analytics: stock, orders, categories
 
-Payment gateway integration (Stripe/Razorpay).
+# AI Voice Command
 
-# ⚙️ Admin Features
+Navigate website using voice:
+“Open Search Bar”
+“Go to Cart”
+“Open Collections Page”
+Real-time voice recognition for faster UX
 
-Product & inventory management.
+# 💻 Tech Stack
 
-AI insights dashboard (sales trends, user behavior, etc.).
+Frontend: React.js, Redux, Tailwind CSS
+Backend: Node.js, Express.js
+Database: MongoDB Atlas
+Authentication: Firebase
+Media Storage: Cloudinary
+Hosting & Deployment: Render
+AI Voice Integration: Web Speech API
 
-Dynamic discount and offer management.
+# ⚡ Challenges & Solutions
 
-# 💬 Extras
+Real-time dashboard updates: Solved with React state management & API endpoints
+Voice recognition accuracy: Optimized command parsing and error handling
+Image storage & optimization: Integrated Cloudinary for fast uploads
+Cross-browser compatibility: Tested on Chrome, Firefox, Edge, Safari
 
-Review & rating system.
+# 🌟 Outcomes
 
-Real-time notifications.
+Fully functional AI-assisted e-commerce platform
+Smooth, voice-enabled user navigation
+Real-time interaction between admin and customer dashboards
+Unique solution in the market with AI navigation
 
-Personalized homepage feed powered by AI.
+# 📂 Installation & Setup
 
-# 🏗️ Tech Stack
+1. Clone the repository
+   git clone https://github.com/YOUR_USERNAME/ShopGenie.git
+   cd ShopGenie
+2. Install dependencies
+   npm install
+3. Setup Environment Variables (.env)
+   MONGO_URI=your_mongodb_atlas_connection_string
+   FIREBASE_API_KEY=your_firebase_api_key
+   CLOUDINARY_CLOUD_NAME=your_cloud_name
+   CLOUDINARY_API_KEY=your_cloudinary_key
+   CLOUDINARY_API_SECRET=your_cloudinary_secret
+4. Run development server
+   npm run dev
+5. Access project at http://localhost:5134
 
-Frontend: React.js + Tailwind CSS + Redux Toolkit
-Backend: Node.js + Express.js
-Database: MongoDB
-AI Layer: OpenAI API / HuggingFace Models (for recommendations, chat, search)
-Authentication: JWT + bcrypt
-Payments: Stripe or Razorpay integration
-Deployment: Vercel / Render / MongoDB Atlas
+# 🔗 Links
 
-# 📸 Sneak Peek
+Live Project: https://shopgenie-frontend.onrender.com/
 
-# 🧑‍💻 Contributing
+# 📈 Roadmap / Future Enhancements
 
-We welcome contributions! Open an issue, submit a PR, or suggest a feature.
+AI-based product recommendations
+Multi-language voice commands
+Advanced admin analytics & reporting
+Global payment gateway integration
 
-# 📝 License
+# 📷 Screenshots / GIFs
 
-MIT License © 2025 Prince
+
+
+# 📌 Notes
+
+First-time users: Enable third-party cookies for AI voice commands
+Optimized for modern browsers & mobile devices
+
+
