@@ -15,7 +15,7 @@ Scalable MERN Stack Architecture with cloud deployment
 
 # 🎥 Demo Video
 
-Watch ShopGenie in action:[Link][https://youtu.be/3SB1atOVclk?si=FDxcwwvqOO1DFaPb]
+Watch ShopGenie in action:[https://youtu.be/3SB1atOVclk?si=FDxcwwvqOO1DFaPb]
 
 Note: For first-time users, please allow third-party cookies to enable full AI voice functionality.
 
