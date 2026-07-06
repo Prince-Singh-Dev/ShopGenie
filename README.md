@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=24&duration=3500&pause=1000&center=true&vCenter=true&width=700&lines=AI-Powered+E-Commerce+Platform;Voice-Controlled+Shopping+Experience;Built+with+the+MERN+Stack;Real-Time+Admin+Dashboard;Modern+Responsive+UI%2FUX" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=24&duration=3500&pause=1000&center=true&vCenter=true&width=700&lines=Voice-Controlled+Shopping+Experience;Built+with+the+MERN+Stack;Real-Time+Admin+Dashboard;Modern+Responsive+UI%2FUX" alt="Typing SVG" />
 </p>
 
 <p align="center">
